@@ -26,9 +26,13 @@ while True:
         estoque.cadastrar_produto(codigo, descricao, quantidade, valor_unitario)
 
     elif opcao == "2":
-        pass
+       codigo = input("Código: ") 
+       quantidade = int(input("Quantidade: "))
+       estoque.entrada(codigo,quantidade)
     elif opcao == "3":
-        pass
+        codigo = input("Código: ")
+        quantidade = int(input("Quantidade: "))
+        estoque.retirar(codigo,quantidade)
     elif opcao == "4":
         estoque.listar_produtos()
     elif opcao == "5":
