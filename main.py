@@ -2,6 +2,7 @@ from estoque import Estoque
 from login_robusto.log_in import login, Criar_acesso_usuario, Acesso_usuario
 from rich.console import Console
 from rich.panel import Panel
+from time import sleep
 
 console = Console()
 estoque = Estoque()
@@ -24,11 +25,12 @@ while True:
         width=30
         )
     )
-
+    
     opcao = input("Escolha uma opção: ")
 
     if opcao == "1":
         if cadastro is None:
+            
             console.print(
             Panel(
                 "❌     Nenhum usuário \n       cadastrado.",
@@ -66,6 +68,7 @@ while True:
         break
     else:
         print("Opção inválida!")
+
 
 
 
