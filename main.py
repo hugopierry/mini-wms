@@ -22,7 +22,8 @@ while True:
         "7 - Sair",
         title="[bold white]MINI WMS[/bold white]",
         border_style="cyan",
-        width=30
+        width=30,
+        style="on #1e293b"
         )
     )
     
@@ -48,7 +49,7 @@ while True:
         codigo = input("Código: ")
         descricao = input("Descrição: ")
         quantidade = int(input("Quantidade: "))
-        valor_unitario = float(input("Valor unitário: "))
+        valor_unitario = float(input("Valor unitário: ").replace(".","").replace(",","."))
         estoque.cadastrar_produto(codigo, descricao, quantidade, valor_unitario)
 
     elif opcao == "4":
@@ -63,6 +64,7 @@ while True:
     
     elif opcao == "6":
         estoque.listar_produtos()
+        
     elif opcao == "7":
         print("Saindo...")
         break
