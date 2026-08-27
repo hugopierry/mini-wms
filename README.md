@@ -1,20 +1,29 @@
 # 📦 Mini WMS — Python
 
-Sistema de gerenciamento de estoque desenvolvido em **Python**, criado com o objetivo de praticar e aplicar conceitos de **Programação Orientada a Objetos (POO)**, **SQL**, **SQLite** e organização de projetos em módulos.
+Sistema de gerenciamento de estoque desenvolvido em **Python**, criado como um **laboratório de estudos práticos**.
 
-O projeto está sendo desenvolvido gradualmente conforme avanço nos estudos de Python, POO e bancos de dados.
+O projeto acompanha minha evolução nos estudos de **Python, Programação Orientada a Objetos (POO), SQL, SQLite, banco de dados, Git e GitHub**.
+
+A ideia é simples: aprender um conceito e colocá-lo em prática diretamente no projeto.
 
 ---
 
 ## 📌 Sobre o projeto
 
-O **Mini WMS** é um projeto de estudo inspirado em sistemas de gerenciamento de estoque.
+O **Mini WMS** é um projeto pessoal inspirado em sistemas de gerenciamento de estoque.
 
-A aplicação possui um sistema de autenticação de usuários e um módulo de gerenciamento de produtos, permitindo realizar operações básicas de estoque através de um menu interativo no terminal.
+Ele começou como uma aplicação simples executada pelo terminal e vem evoluindo conforme avanço nos estudos.
 
-Atualmente, o sistema de usuários já possui persistência utilizando **SQLite**.
+Atualmente, o projeto possui:
 
-A próxima etapa do projeto é integrar também o gerenciamento de produtos ao banco de dados.
+* 🔐 Sistema de autenticação de usuários
+* 📦 Gerenciamento de produtos
+* 🗄️ Persistência de dados utilizando SQLite
+* 🔎 Consultas e manipulação de dados com SQL
+* 🧩 Organização do código em módulos
+* 📝 Versionamento utilizando Git e GitHub
+
+O projeto está em desenvolvimento contínuo e novas funcionalidades serão adicionadas conforme novos conhecimentos forem sendo aplicados.
 
 ---
 
@@ -22,40 +31,88 @@ A próxima etapa do projeto é integrar também o gerenciamento de produtos ao b
 
 ### 🔐 Usuários
 
-- [x] Criar usuário
-- [x] Criar senha
-- [x] Cadastrar nome completo
-- [x] Validar senha
-- [x] Validar usuário
-- [x] Menu de login
-- [x] Persistência de usuários com SQLite
-- [x] Tratamento de matrícula duplicada
-- [x] Senha oculta durante a digitação
+* Criar usuário
+* Criar senha
+* Cadastrar nome completo
+* Validar usuário
+* Validar senha
+* Menu de login
+* Persistência dos usuários no SQLite
+* Tratamento de matrícula duplicada
+* Senha oculta durante a digitação
 
-### 📦 Estoque
+### 📦 Produtos
 
-- [x] Cadastro de produtos em memória
-- [x] Entrada de produtos
-- [x] Retirada de produtos
-- [x] Listagem de produtos
-- [ ] Persistência dos produtos no SQLite
-- [ ] Cadastro de produtos integrado ao banco
-- [ ] Entrada integrada ao banco
-- [ ] Retirada integrada ao banco
-- [ ] Listagem integrada ao banco
+* Cadastro de produtos
+* Código de barras
+* SKU
+* Descrição
+* Caixaria
+* Validade
+* Lote
+* Quantidade
+* Valor unitário
+* Inserção de produtos no banco de dados
+* Consulta de produtos utilizando SQL
 
 ---
 
 ## 🗄️ Banco de dados
 
-O projeto utiliza **SQLite** para persistência dos dados.
+O projeto utiliza **SQLite** para armazenar os dados.
 
-### Tabela de usuários
-
-Atualmente o sistema possui a tabela:
+### Tabela `usuarios`
 
 ```text
 usuarios
 ├── matricula
 ├── senha
 └── nome
+```
+
+### Tabela `produtos`
+
+```text
+produtos
+├── id
+├── codigo_barras
+├── sku
+├── descricao
+├── caixaria
+├── validade
+├── lote
+├── quantidade
+└── valor_unitario
+```
+
+---
+
+## 🧪 Laboratório de estudos
+
+O Mini WMS também funciona como um ambiente para colocar em prática os conhecimentos adquiridos durante meus estudos.
+
+Entre os conceitos praticados estão:
+
+* Python
+* POO
+* SQL
+* SQLite
+* CRUD
+* `SELECT`
+* `INSERT`
+* `UPDATE`
+* `DELETE`
+* Funções de agregação como `MAX()` e `MIN()`
+* Tratamento de erros
+* Organização de projetos
+* Git e GitHub
+
+---
+
+## 🚧 Em desenvolvimento
+
+O projeto continua sendo desenvolvido gradualmente.
+
+Novos conhecimentos aprendidos durante os estudos serão aplicados diretamente no Mini WMS, mantendo o projeto em constante evolução.
+
+**Aprender → aplicar → errar → corrigir → versionar → evoluir.** 🚀
