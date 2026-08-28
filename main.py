@@ -1,14 +1,14 @@
 from estoque import Estoque
+# Importa a classe Estoque do arquivo estoque.py.
 from login_robusto.log_in import login, Criar_acesso_usuario, Acesso_usuario
+# REVISAR:
+# A função login é importada, mas não está sendo utilizada neste arquivo.
 from rich.console import Console
 from rich.panel import Panel
-from time import sleep
 
 console = Console()
 estoque = Estoque()
 cadastro = None
-
-
 
 while True:
     console.print(
@@ -51,25 +51,32 @@ while True:
         quantidade = int(input("Quantidade: "))
         valor_unitario = float(input("Valor unitário: ").replace(".","").replace(",","."))
         estoque.cadastrar_produto(codigo, descricao, quantidade, valor_unitario)
-
+        # MELHORIA:
+        # Essa parte será alterada durante a integração com o banco de dados,
+        # pois os dados cadastrados passarão a ser armazenados no SQL.
     elif opcao == "4":
         codigo = input("Código: ") 
         quantidade = int(input("Quantidade: "))
         estoque.entrada(codigo,quantidade)
+        # COndição que insere quantida via código
 
     elif opcao == "5":
         codigo = input("Código: ")
         quantidade = int(input("Quantidade: "))
         estoque.retirar(codigo,quantidade)
+        # condição que retira saldo via código
     
     elif opcao == "6":
         estoque.listar_produtos()
+        # condição que lista os dados atualizados, mesmo que em memória RAM
         
     elif opcao == "7":
         print("Saindo...")
+        # condição que encerra o loop com break
         break
     else:
         print("Opção inválida!")
+        # se for digita uma opção inexistente, é avisado via print
 
 
 
