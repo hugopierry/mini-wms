@@ -38,31 +38,10 @@ def criar_tabelas():
 
     cursor.execute(comando_sql)
     # Executa o comando SQL criado acima
-    comando_inserir = """
-        INSERT INTO produtos (
-            codigo_barras,
-            sku,
-            descricao,
-            caixaria,
-            validade,
-            lote,
-            quantidade,
-            valor_unitario
-        )
-
-        VALUES (
-        '789000000018','SKU018','Produto Teste 1','12','2032/07/10','LOTE018','20','15.90'
-          
-    ),
-    (
-    '789000000019','SKU019','Produto Teste 2','24','2032/08/15','LOTE019','30','22.50'
-    
-    );
-    """
 
 
-    cursor.execute(comando_inserir)
-
+        
+        
     comanod_select = """
         SELECT  *  FROM produtos;
 
@@ -73,12 +52,52 @@ def criar_tabelas():
     conexao.commit()
     # Confirma e registra a alteração realizada no banco
     
-    print("2 itens inseridos com sucesso!")
+    
     # Exibe uma mensagem de confirmação
 
     conexao.close()
     # Fecha a conexão para finalizar o acesso ao banco
+def inserir_produto(codigo_barras, sku, descricao, caixaria,
+                    validade, lote, quantidade, valor_unitario):
+        
+    conexao = conectar()
+    cursor = conexao.cursor()
 
 
+    comando_inserir = """
+
+    INSERT INTO produtos (
+            codigo_barras,
+            sku,
+            descricao,
+            caixaria,
+            validade,
+            lote,
+            quantidade,
+            valor_unitario
+        )
+        VALUES (?,?,?,?,?,?,?,?);
+""" 
+    cursor.execute(comando_inserir,(
+        codigo_barras,
+        sku,
+        descricao,
+        caixaria,
+        validade,
+        lote,
+        quantidade,
+        valor_unitario))
+    conexao.commit()
+    conexao.close()
 criar_tabelas()
+inserir_produto('789000000020',
+    'SKU020',
+    'Mouse',
+    12,
+    '2032/09/10',
+    'LOTE020',
+    15,
+    35.90)
+
 # Chama a função para executar o processo
+
