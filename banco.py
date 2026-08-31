@@ -154,10 +154,66 @@ def deletar_item():
     else:
         print("SKU não encontrado.")
 
+    conexao.close()
+def atualizar_item():
+    conexao = conectar()
+    cursor = conexao.cursor()
+
+    print("ATUALIZAR ITEM:")
+    # Inicia a atualização do item via SKU
+    sku_atualizar = input("SKU do produto: ").strip().upper()
+    # Esse é o SKU atual, usado para localizar qual cadastro será alterado.
+    codigo_barras = int(input("Código de Barras: "))
+    descricao = input("Descrição: ")
+    caixaria = int(input("Caixaria: "))
+    validade = input("Validade: ")
+    lote = input("Lote: ")
+    quantidade = int(input("Quantidade: "))
+    valor_unitario = float(input("Valor Unitário: "))
+
+    # ATUALIZA produtos.db e DEFINE os novos dados
+    cursor.execute(
+
+        """UPDATE produtos 
+        SET 
+            
+            codigo_barras = ?,
+            descricao= ?,
+            caixaria= ?,
+            validade= ?,
+            lote= ?,
+            quantidade= ?,
+            valor_unitario = ?
+    WHERE sku = ? 
+    """,
+    (
     
+   
+        codigo_barras,
+        descricao,
+        caixaria,
+        validade,
+        lote,
+        quantidade,
+        valor_unitario,
+        sku_atualizar,
+        
+    )
+    
+    )
+    if cursor.rowcount > 0:
+    # informa quantas linhas foram afetadas pelo último comando SQL.
+        conexao.commit()
+        print("Item atualizado com sucesso!")
+    else:
+        print("SKU não encontrado.")
+    
+    # Tupla com os novos valores que serão gravados no produto.
+    # O sku_atualizar é usado pelo WHERE para localizar o registro.
+    conexao.commit()
     
     conexao.close()
-    
 
-deletar_item()
-cadastrar_item()
+# deletar_item()
+# cadastrar_item()
+atualizar_item()
