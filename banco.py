@@ -141,16 +141,21 @@ def deletar_item():
     cursor = conexao.cursor()
     # Comando criado para apagar um item via ID
     # que estava gerando erro no código
-    print("EXCLUIR ITEM VIA ID:".center(50))
-    id_produto = int(input("\nID do produto que deseja excluir: "))
+    print("EXCLUIR ITEM VIA SKU:".center(50))
+    sku_produto = input("\nSKU do produto que deseja excluir: ").strip().upper()
 
     cursor.execute(
 
-        "DELETE FROM produtos WHERE id = ?",(id_produto,)
-    )
+        "DELETE FROM produtos WHERE sku = ?",(sku_produto,))
     
-    conexao.commit()
-    print("Item excluido com sucesso!")
+    if cursor.rowcount > 0:
+        conexao.commit()
+        print("Item excluído com sucesso!")
+    else:
+        print("SKU não encontrado.")
+
+    
+    
     conexao.close()
     
 
