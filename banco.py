@@ -87,16 +87,25 @@ def criar_tabelas():
 
     conexao.close()
     # Fecha a conexão para finalizar o acesso ao banco
-def inserir_produto(codigo_barras, sku, descricao, caixaria,
-                    validade, lote, quantidade, valor_unitario):
-        
+    
+
+def cadastrar_item():
     conexao = conectar()
     cursor = conexao.cursor()
+    print("CADASTRAR ITEM:")
+    codigo_barras = int(input("Código de Barras: "))
+    sku = input("SKU: ")
+    descricao = input("Descrição: ")
+    caixaria = int(input("Caixaria: "))
+    validade = input("Validade: ")
+    lote = input("Lote: ")
+    quantidade = int(input("Quantidade: "))
+    valor_unitario = float(input("Valor Unitário: "))
 
+    cursor.execute(
 
-    comando_inserir = """
-
-    INSERT INTO produtos (
+        """INSERT INTO produtos(
+            
             codigo_barras,
             sku,
             descricao,
@@ -105,10 +114,10 @@ def inserir_produto(codigo_barras, sku, descricao, caixaria,
             lote,
             quantidade,
             valor_unitario
-        )
-        VALUES (?,?,?,?,?,?,?,?);
-""" 
-    cursor.execute(comando_inserir,(
+    )
+    VALUES( ?, ?, ?, ?, ?, ?, ?, ?)""",
+    (
+       
         codigo_barras,
         sku,
         descricao,
@@ -116,21 +125,15 @@ def inserir_produto(codigo_barras, sku, descricao, caixaria,
         validade,
         lote,
         quantidade,
-        valor_unitario))
+        valor_unitario 
+    ))
+    
+
     conexao.commit()
+    print(f"'{descricao}'cadastrado com sucesso!")
+    # Mensagem de confirmação de registro
     conexao.close()
-criar_tabelas()
-inserir_produto('789000000021',
-    'SKU021',
-    'Headphone',
-    15,
-    '2032/09/10',
-    'LOTE021',
-    15,
-    186.90)
 
-
-# Chama a função para executar o processo
 
 def deletar_item():
     conexao = conectar()
@@ -138,11 +141,18 @@ def deletar_item():
     cursor = conexao.cursor()
     # Comando criado para apagar um item via ID
     # que estava gerando erro no código
-    comando_deletar = """
-    DELETE FROM produtos
-        WHERE id = 1
-    """
-    cursor.execute(comando_deletar)
+    print("EXCLUIR ITEM VIA ID:".center(50))
+    id_produto = int(input("\nID do produto que deseja excluir: "))
+
+    cursor.execute(
+
+        "DELETE FROM produtos WHERE id = ?",(id_produto,)
+    )
+    
     conexao.commit()
+    print("Item excluido com sucesso!")
     conexao.close()
+    
+
 deletar_item()
+cadastrar_item()
