@@ -89,19 +89,10 @@ def criar_tabelas():
     # Fecha a conexão para finalizar o acesso ao banco
     
 
-def cadastrar_item():
+def cadastrar_item(codigo_barras, sku, descricao, caixaria, validade, lote, quantidade, valor_unitario):
+    # Recebe os 8 parâmetros enviados pelo estoque.py
     conexao = conectar()
     cursor = conexao.cursor()
-    print("CADASTRAR ITEM:")
-    codigo_barras = int(input("Código de Barras: "))
-    sku = input("SKU: ")
-    descricao = input("Descrição: ")
-    caixaria = int(input("Caixaria: "))
-    validade = input("Validade: ")
-    lote = input("Lote: ")
-    quantidade = int(input("Quantidade: "))
-    valor_unitario = float(input("Valor Unitário: "))
-
     cursor.execute(
 
         """INSERT INTO produtos(
@@ -213,7 +204,27 @@ def atualizar_item():
     conexao.commit()
     
     conexao.close()
+def entrada_item(sku, quantidade):
+    conexao = conectar()
+    cursor = conexao.cursor()
 
-deletar_item()
-cadastrar_item()
-atualizar_item()
+    cursor.execute(
+        """
+        UPDATE produtos
+        SET quantidade = quantidade + ?
+        WHERE sku = ?
+        """,
+        (quantidade, sku)
+    )
+
+    if cursor.rowcount > 0:
+        conexao.commit()
+        print("Entrada realizada com sucesso!")
+    else:
+        print("SKU não encontrado.")
+
+    conexao.close()
+
+# deletar_item()
+# cadastrar_item()
+# atualizar_item()

@@ -1,14 +1,13 @@
 from estoque import Estoque
 # Importa a classe Estoque do arquivo estoque.py.
-from login_robusto.log_in import login, Criar_acesso_usuario, Acesso_usuario
-# REVISAR:
-# A função login é importada, mas não está sendo utilizada neste arquivo.
+from log_in_oficial import Criar_acesso_usuario, Acesso_usuario
+# Importa as funções do login oficial.
 from rich.console import Console
 from rich.panel import Panel
 
 console = Console()
 estoque = Estoque()
-cadastro = None
+cadastro = Criar_acesso_usuario()
 
 while True:
     console.print(
@@ -46,19 +45,32 @@ while True:
         cadastro = Criar_acesso_usuario()
 
     elif opcao == "3":
-        codigo = input("Código: ")
+        codigo_barras = input("Código de barras: ")
+        sku = input("SKU: ")
         descricao = input("Descrição: ")
+        caixaria = int(input("Caixaria: "))
+        validade = input("Validade: ")
+        lote = input("Lote: ")
         quantidade = int(input("Quantidade: "))
         valor_unitario = float(input("Valor unitário: ").replace(".","").replace(",","."))
-        estoque.cadastrar_produto(codigo, descricao, quantidade, valor_unitario)
-        # MELHORIA:
-        # Essa parte será alterada durante a integração com o banco de dados,
-        # pois os dados cadastrados passarão a ser armazenados no SQL.
+        estoque.cadastrar_produto(
+                                    codigo_barras,
+                                    sku,
+                                    descricao,
+                                    caixaria,
+                                    validade,
+                                    lote,
+                                    quantidade,
+                                    valor_unitario
+                                )
+        # Integração do cadastro de produtos com o banco de dados.
+        # Os dados recebidos pelo usuário são enviados ao estoque.py
+        # e posteriormente gravados no SQLite através do INSERT.
     elif opcao == "4":
-        codigo = input("Código: ") 
+        sku = input("sku: ") 
         quantidade = int(input("Quantidade: "))
-        estoque.entrada(codigo,quantidade)
-        # COndição que insere quantida via código
+        estoque.entrada(sku,quantidade)
+        # COndição que insere quantida via sku
 
     elif opcao == "5":
         codigo = input("Código: ")

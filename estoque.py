@@ -1,5 +1,8 @@
 from produto import Produto
 # Vem do arquivo produto e é importado
+from banco import cadastrar_item
+# vem do arquivo banco.py
+
 
 class Estoque():
     def __init__(self):
@@ -8,15 +11,36 @@ class Estoque():
         # os dados somem, pois foi um armazenamento temporáreo
         # por isso que o mesmo deverá ser integrado a um banco de dados
     
-    def cadastrar_produto(self,codigo,descricao,quantidade, valor_unitario):
+    def cadastrar_produto(self,codigo_barras,sku,descricao,caixaria,validade,lote,quantidade,valor_unitario):
         # função para cadastro. A mesma receberá atualização.
-        if codigo in  self.produtos:
+        if sku in  self.produtos:
             print("Produto já cadastrado!")
             # se o produto constar cadastrado, surge mensagem informanado isso e assim não se tornar possível o cadastramento.
         else:
-           produto = Produto(codigo,descricao,quantidade,valor_unitario)
-           self.produtos[codigo] = produto 
-           # Caso não tenha sido cadastrado anteriormente, o item passa a ser incluso no cadastro
+                produto = Produto(
+                    codigo_barras,
+                    sku,
+                    descricao,
+                    caixaria,
+                    validade,
+                    lote,
+                    quantidade,
+                    valor_unitario
+                )
+
+                cadastrar_item(
+                    codigo_barras,
+                    sku,
+                    descricao,
+                    caixaria,
+                    validade,
+                    lote,
+                    quantidade,
+                    valor_unitario
+                )
+                self.produtos[sku] = produto 
+                    # Recebe os parâmetros do método cadastrar_produto() 
+                    # mantém o objeto no dicionário
     
     def retirar(self,codigo,quantidade):
         # função para retirar saldo, baseado em código e quantidade.
@@ -31,9 +55,9 @@ class Estoque():
             print("Produto não encontrado!")
             # se o produto não existir no cadastro, é infomrado via print
     
-    def entrada(self, codigo, quantidade):
+    def entrada(self, sku, quantidade):
         try:
-            self.produtos[codigo].quantidade +=quantidade
+            self.produtos[sku].quantidade +=quantidade
         except KeyError:
             print("Produto não cadastrado! Cadastre antes de dar entrada.")
             # função que gera entrada de saldo do produto via código. Se o produto não possui cadastro, não pode ser realziaod a entrada.
