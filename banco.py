@@ -214,6 +214,6 @@ def atualizar_item():
     
     conexao.close()
 
-# deletar_item()
-# cadastrar_item()
+deletar_item()
+cadastrar_item()
 atualizar_item()
