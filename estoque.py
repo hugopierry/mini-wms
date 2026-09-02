@@ -1,6 +1,6 @@
 from produto import Produto
 # Vem do arquivo produto e é importado
-from banco import cadastrar_item
+from banco import cadastrar_item, entrada_item # nuc esquecer de chamar o métod criado no módulo anterior
 # vem do arquivo banco.py
 
 
@@ -56,12 +56,11 @@ class Estoque():
             # se o produto não existir no cadastro, é infomrado via print
     
     def entrada(self, sku, quantidade):
-        try:
-            self.produtos[sku].quantidade +=quantidade
-        except KeyError:
-            print("Produto não cadastrado! Cadastre antes de dar entrada.")
-            # função que gera entrada de saldo do produto via código. Se o produto não possui cadastro, não pode ser realziaod a entrada.
-            # Isso é informado via print.
+       
+        entrada_item(sku, quantidade)
+        # chama a função entrada_item(), criada no arquivo banco.py
+            
+        
     
     def listar_produtos(self):
         for produto in self.produtos.values():

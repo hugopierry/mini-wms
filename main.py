@@ -7,7 +7,7 @@ from rich.panel import Panel
 
 console = Console()
 estoque = Estoque()
-cadastro = Criar_acesso_usuario()
+cadastro = None
 
 while True:
     console.print(
@@ -70,7 +70,7 @@ while True:
         sku = input("sku: ") 
         quantidade = int(input("Quantidade: "))
         estoque.entrada(sku,quantidade)
-        # COndição que insere quantida via sku
+        # Condição que insere quantida via sku
 
     elif opcao == "5":
         codigo = input("Código: ")

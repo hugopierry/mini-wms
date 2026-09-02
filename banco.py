@@ -202,8 +202,8 @@ def atualizar_item():
     # Tupla com os novos valores que serão gravados no produto.
     # O sku_atualizar é usado pelo WHERE para localizar o registro.
     conexao.commit()
-    
     conexao.close()
+    
 def entrada_item(sku, quantidade):
     conexao = conectar()
     cursor = conexao.cursor()
