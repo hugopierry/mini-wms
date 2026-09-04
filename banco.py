@@ -1,4 +1,8 @@
 import sqlite3
+
+from psycopg import Cursor
+
+import produto
 # Importa o SQLite
 
 
@@ -205,6 +209,7 @@ def atualizar_item():
     conexao.close()
     
 def entrada_item(sku, quantidade):
+    # lógica da entrada
     conexao = conectar()
     cursor = conexao.cursor()
 
@@ -218,12 +223,50 @@ def entrada_item(sku, quantidade):
     )
 
     if cursor.rowcount > 0:
+        # Verifique se o comando SQL alterou pelo menos uma linha
         conexao.commit()
         print("Entrada realizada com sucesso!")
     else:
         print("SKU não encontrado.")
 
     conexao.close()
+
+def retirar_item(sku, quantidade):
+    conexao = conectar()
+    cursor = conexao.cursor()
+
+    cursor.execute(
+        """
+        UPDATE produtos
+        SET quantidade = quantidade - ?
+        WHERE sku = ?
+        
+        """,
+     (quantidade, sku)
+
+    )
+
+    if cursor.rowcount > 0:
+        # Verifique se o comando SQL alterou pelo menos uma linha (retirar)
+        conexao.commit()
+        print("Retirada realizada com sucesso!")
+    else:
+        print("SKU não encontrado.")
+
+    conexao.close()
+
+def buscar_produtos():
+    conexao = conectar()
+    cursor = conexao.cursor()
+
+    cursor.execute("SELECT * FROM produtos")
+
+    produtos = cursor.fetchall()
+
+    print(produtos)
+    conexao.close()
+
+    return produtos
 
 # deletar_item()
 # cadastrar_item()

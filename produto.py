@@ -1,6 +1,9 @@
+from banco import buscar_produtos
+
+
 class Produto():
-    def __init__(self, codigo_barras, sku,descricao,caixaria, validade, lote, quantidade, valor_unitario):
-        
+    def __init__(self, codigo_barras, sku, descricao, caixaria, validade, lote, quantidade, valor_unitario):
+
         self.codigo_barras = codigo_barras
         self.sku = sku
         self.descricao = descricao

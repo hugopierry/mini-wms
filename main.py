@@ -8,6 +8,9 @@ from rich.panel import Panel
 console = Console()
 estoque = Estoque()
 cadastro = None
+#→ cria/inicializa a variável com ausência de valor.
+
+# Depois, somente quando você escolhe a opção 2:
 
 while True:
     console.print(
@@ -73,9 +76,9 @@ while True:
         # Condição que insere quantida via sku
 
     elif opcao == "5":
-        codigo = input("Código: ")
+        sku = input("SKU: ").strip().upper()
         quantidade = int(input("Quantidade: "))
-        estoque.retirar(codigo,quantidade)
+        estoque.retirar(sku,quantidade)
         # condição que retira saldo via código
     
     elif opcao == "6":
