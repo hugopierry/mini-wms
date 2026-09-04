@@ -9,6 +9,7 @@ from banco import cadastrar_item, entrada_item, retirar_item , buscar_produtos #
 class Estoque():
     def __init__(self):
         self.produtos = {}
+        # armazena no dicionário
 
         produtos = buscar_produtos()
 
@@ -66,8 +67,7 @@ class Estoque():
         try:
             if quantidade > self.produtos[sku].quantidade:
                 print("Saldo insuficinte para retirada.")
-                
-                # se o valor retirado for maior que o valor disponível, o sisitem não permite e, infomra via print o motivo
+                # se o valor retirado for maior que o valor disponível, o sistema não permite e, informaa via print o motivo.
             else:
                 self.produtos[sku].quantidade -=quantidade
                 retirar_item(sku, quantidade)
@@ -86,10 +86,6 @@ class Estoque():
         except KeyError:
             print("Produto não encontrado!")
             
-       
-        
-        
-
     def listar_produtos(self):
         for produto in self.produtos.values():
             produto.exibir_produto()

@@ -70,13 +70,13 @@ while True:
         # Os dados recebidos pelo usuário são enviados ao estoque.py
         # e posteriormente gravados no SQLite através do INSERT.
     elif opcao == "4":
-        sku = input("sku: ") 
+        sku = input("Informe o SKU em letras maiúsculas: ") 
         quantidade = int(input("Quantidade: "))
         estoque.entrada(sku,quantidade)
         # Condição que insere quantida via sku
 
     elif opcao == "5":
-        sku = input("SKU: ").strip().upper()
+        sku = input("Informe o SKU em letras maiúsculas: ").strip()
         quantidade = int(input("Quantidade: "))
         estoque.retirar(sku,quantidade)
         # condição que retira saldo via código

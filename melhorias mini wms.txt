@@ -1,0 +1,34 @@
+📓 Anotação — Próximo estudo: Mini WMS + POO
+
+MINI WMS — Próximas melhorias
+
+Opção 6 — Listar produtos
+Usar Rich Table
+Organizar produtos em colunas
+Formatar valor: R$ 0,00
+Deixar a visualização mais profissional
+-----------------------------------------------------------
+Opção 1 — Login / acesso ao sistema
+Primeiro o usuário precisa fazer login
+Se não existir usuário cadastrado → não libera o sistema
+Login válido → libera o menu de funcionalidades
+Separar menu de acesso do menu principal
+---------------------------------------------------------
+Proteger:
+Cadastrar produto
+Entrada
+Retirada
+Listagem
+Testar tudo
+Cadastro
+Entrada
+Retirada
+Listagem
+Login
+Banco de dados
+---------------------------------------------------------
+Git
+git status
+git add .
+git commit
+git push
