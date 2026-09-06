@@ -1,27 +1,28 @@
 from estoque import Estoque
 # Importa a classe Estoque do arquivo estoque.py.
-from log_in_oficial import Criar_acesso_usuario, Acesso_usuario
+from log_in_oficial import Criar_acesso_usuario, Acesso_usuario, login
 # Importa as funções do login oficial.
 from rich.console import Console
 from rich.panel import Panel
 
 console = Console()
 estoque = Estoque()
-cadastro = None
-#→ cria/inicializa a variável com ausência de valor.
 
-# Depois, somente quando você escolhe a opção 2:
+acesso = login()
+
+if acesso is False:
+    exit()
+
 
 while True:
     console.print(
         Panel(
-        "\n1 - Acessar o sistema\n"
-        "2 - Criar usuário\n"
-        "3 - Cadastrar produto\n"
-        "4 - Inserir produto\n"
-        "5 - Retirar produto\n"
-        "6 - Listar produto\n"
-        "7 - Sair",
+        
+        "\n1 - Cadastrar produto\n"
+        "2 - Inserir produto\n"
+        "3 - Retirar produto\n"
+        "4 - Listar produto\n"
+        "0 - Sair",
         title="[bold white]MINI WMS[/bold white]",
         border_style="cyan",
         width=30,
@@ -31,23 +32,8 @@ while True:
     
     opcao = input("Escolha uma opção: ")
 
+    
     if opcao == "1":
-        if cadastro is None:
-            
-            console.print(
-            Panel(
-                "❌     Nenhum usuário \n       cadastrado.",
-                border_style="red",
-                width=30
-            )
-        ) 
-            
-        else:
-            acesso = Acesso_usuario(cadastro)
-    elif opcao == "2":
-        cadastro = Criar_acesso_usuario()
-
-    elif opcao == "3":
         codigo_barras = input("Código de barras: ")
         sku = input("SKU: ")
         descricao = input("Descrição: ")
@@ -69,23 +55,23 @@ while True:
         # Integração do cadastro de produtos com o banco de dados.
         # Os dados recebidos pelo usuário são enviados ao estoque.py
         # e posteriormente gravados no SQLite através do INSERT.
-    elif opcao == "4":
+    elif opcao == "2":
         sku = input("Informe o SKU em letras maiúsculas: ") 
         quantidade = int(input("Quantidade: "))
         estoque.entrada(sku,quantidade)
         # Condição que insere quantida via sku
 
-    elif opcao == "5":
+    elif opcao == "3":
         sku = input("Informe o SKU em letras maiúsculas: ").strip()
         quantidade = int(input("Quantidade: "))
         estoque.retirar(sku,quantidade)
         # condição que retira saldo via código
     
-    elif opcao == "6":
+    elif opcao == "4":
         estoque.listar_produtos()
         # condição que lista os dados atualizados, mesmo que em memória RAM
         
-    elif opcao == "7":
+    elif opcao == "0":
         print("Saindo...")
         # condição que encerra o loop com break
         break

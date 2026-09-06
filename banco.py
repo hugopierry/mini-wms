@@ -271,3 +271,16 @@ def buscar_produtos():
 # deletar_item()
 # cadastrar_item()
 # atualizar_item()
+
+conexao = conectar()
+cursor = conexao.cursor()
+
+cursor.execute("SELECT matricula, senha FROM usuarios")
+
+usuarios = cursor.fetchall()
+
+for usuario in  usuarios:
+    print(usuario)
+
+# SQLite: "database is locked" geralmente pode ser porque o banco de dados está em outra
+# conexão. Fechando o banco, o acesso é liberado.

@@ -186,7 +186,8 @@ def login():
         elif opcao == "0":
             sleep(1)
             console.print("\n👋 Saindo do sistema...")
-            break
+            return False
+            # comunica ao main.py que o usuário escolheu sair do login
         else:
             console.print(
                 "\n❌ Opção inválida. Tente novamente."
