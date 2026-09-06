@@ -1,9 +1,13 @@
 
-
 from produto import Produto
 # Vem do arquivo produto e é importado
 from banco import cadastrar_item, entrada_item, retirar_item , buscar_produtos # nunca esquecer de chamar o método criado no módulo anterior
-# vem do arquivo banco.py
+# vem do arquivo banco.py.
+from rich.table import Table
+# Table é uma funcionalida  para criar tabelas no terminal
+from rich.console import Console
+
+console = Console()
 
 
 class Estoque():
@@ -87,11 +91,31 @@ class Estoque():
             print("Produto não encontrado!")
             
     def listar_produtos(self):
-        for produto in self.produtos.values():
-            produto.exibir_produto()
-            # função para listar o que possui cadastrado na memória RAM.
-            # O uso do FOR serve para organizar a exibição.
 
+        tabela = Table(title = "PRODUTOS EM ESTOQUE")
+        # Acrescenta um título a lista
+
+        tabela.add_column("SKU") # Adicione uma coluna chamada "SKU" na tabela.
+        # cria a coluna
+        tabela.add_column("Descrição")
+        tabela.add_column("Quantidade")
+        tabela.add_column("Lote")
+        tabela.add_column("Validade")
+        tabela.add_column(("Valor"))
+
+        for produto in self.produtos.values():
+            # coloca os valores dentra das colunas criadas acima
+            tabela.add_row(
+                produto.sku,
+                produto.descricao,
+                str(produto.quantidade),
+                produto.lote,
+                produto.validade,
+                f"R$ {produto.valor_unitario:.2f}"
+
+                )
+            
+        console.print(tabela)
 
 estoque = Estoque() 
 

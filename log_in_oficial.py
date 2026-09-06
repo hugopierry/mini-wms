@@ -1,11 +1,7 @@
-import sys
+
 import sqlite3
 
 from banco import conectar, criar_tabelas
-
-if sys.platform == "win32":
-    sys.stdout.reconfigure(encoding="utf-8")
-    sys.stderr.reconfigure(encoding="utf-8")
 
 from rich.console import Console  
 from rich.panel import Panel  
