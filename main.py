@@ -82,3 +82,4 @@ while True:
 
 
 
+input("\nPressione ENTER para fechar...")

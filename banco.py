@@ -2,8 +2,6 @@ import sqlite3
 
 from psycopg import Cursor
 
-import produto
-# Importa o SQLite
 
 
 def conectar():
@@ -263,7 +261,7 @@ def buscar_produtos():
 
     produtos = cursor.fetchall()
 
-    print(produtos)
+    
     conexao.close()
 
     return produtos
@@ -274,3 +272,15 @@ def buscar_produtos():
 
 # SQLite: "database is locked" geralmente pode ser porque o banco de dados está em outra
 # conexão. Fechando o banco, o acesso é liberado.
+
+def excluir_item():
+    conexao = conectar()
+    cursor = conexao.cursor()
+    cursor.execute("DELETE FROM produtos WHERE id IN  (?)", (113,))
+    conexao.commit()
+    print("Item excluido com sucesso!")
+    print(f"{cursor.rowcount} itens exluídos!")
+    conexao.close()
+
+    
+excluir_item()
