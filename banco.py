@@ -276,7 +276,7 @@ def buscar_produtos():
 def excluir_item():
     conexao = conectar()
     cursor = conexao.cursor()
-    cursor.execute("DELETE FROM produtos WHERE id IN  (?)", (113,))
+    cursor.execute("DELETE FROM produtos WHERE id IN  (?)", (8,))
     conexao.commit()
     print("Item excluido com sucesso!")
     print(f"{cursor.rowcount} itens exluídos!")

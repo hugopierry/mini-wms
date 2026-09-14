@@ -15,12 +15,16 @@ df = pd.read_sql(query, conexao)
 # tipo uma planilha em memória). 
 # É por isso que chamamos a variável de df: é convenção pra "DataFrame".
 
-
 print(df)
 # Imprime no terminal as linhas, colunas bem alinhadas de forma otganizada
 
-print(df.info())
-# imprimi indícios de onde possa haver 'sujeiras' no arquivo
-
-duplicados = df[df.duplicated(subset='codigo_barras', keep= False)]
+df.info()
+# inspeção geral
+tipos_dados = df.dtypes
+print(f"Todos os tipos de dados: \n{tipos_dados}")
+# Mostra o tipo de dado de cada coluna
+duplicados = df[df.duplicated(subset='sku', keep= False)]
 print(f"Duplicados: {duplicados}")
+# Verifica se existem códigos de barras duplicados
+
+input("Pressione ENTER para sair do programa")
