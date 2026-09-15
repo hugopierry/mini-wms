@@ -1,4 +1,7 @@
 
+from math import prod
+
+import movimentacao
 from produto import Produto
 # Vem do arquivo produto e é importado
 from banco import cadastrar_item, entrada_item, retirar_item , buscar_produtos # nunca esquecer de chamar o método criado no módulo anterior
@@ -6,6 +9,9 @@ from banco import cadastrar_item, entrada_item, retirar_item , buscar_produtos #
 from rich.table import Table
 # Table é uma funcionalida  para criar tabelas no terminal
 from rich.console import Console
+
+from movimentacao import Entrada, Saida 
+# Importa o arquivo Movimentacao, com suas classes Entrada e Saida
 
 console = Console()
 
@@ -69,24 +75,21 @@ class Estoque():
     def retirar(self,sku,quantidade):
         # função para retirar saldo, baseado em código e quantidade.
         try:
-            if quantidade > self.produtos[sku].quantidade:
-                print("Saldo insuficinte para retirada.")
-                # se o valor retirado for maior que o valor disponível, o sistema não permite e, informaa via print o motivo.
-            else:
-                self.produtos[sku].quantidade -=quantidade
-                retirar_item(sku, quantidade)
-                # caso possua saldo suficiente, é realizado saída do estoque
+            produto = self.produtos[sku]
+            movimentacao = Saida(produto, quantidade)
+            # usa a função que foi criada no arquivo Movimentacao.py
+            print(movimentacao.executar())
         except KeyError:
+            # Se a chave for errada imprime:
             print("Produto não encontrado!")
-            # se o produto não existir no cadastro, é infomrado via print
-    
+        except ValueError as erro:
+            #  Captura o erro de saldo insuficiente levantado dentro de Saida.executar()
+            print(erro)
     def entrada(self, sku, quantidade):
         try:
-            self.produtos[sku].quantidade += quantidade
-            # Procura o SKU no dicionário e aumenta a quantidade em memória.
-            entrada_item(sku, quantidade)
-            # atualiza a quantidade no banco de dados.
-        # Se o SKU não existir, informa ao usuário.
+            produto = self.produtos[sku]
+            movimentacao = Entrada(produto, quantidade)
+            print(movimentacao.executar())
         except KeyError:
             print("Produto não encontrado!")
             

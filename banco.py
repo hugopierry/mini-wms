@@ -1,9 +1,5 @@
 import sqlite3
 
-from psycopg import Cursor
-
-
-
 def conectar():
     # Define a função responsável pela conexão
     conexao = sqlite3.connect("mini_wms.db")
@@ -283,4 +279,4 @@ def excluir_item():
     conexao.close()
 
     
-excluir_item()
+# excluir_item()
