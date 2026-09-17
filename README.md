@@ -1,33 +1,73 @@
----
+# Mini WMS
 
-## 📚 Objetivo do projeto
+Projeto inspirado no sistema que utilizo no meu trabalho na área de logística, desenvolvido com **dados fictícios** para fins de estudo e aprendizado.
 
-O Mini WMS é, principalmente, um **laboratório de aprendizado**.
+O projeto começou de uma forma bem simples: utilizando o **Bloco de Notas para salvar os dados**. Conforme fui evoluindo nos estudos, percebi uma limitação importante: os dados ficavam apenas na memória RAM e eram perdidos quando o programa era fechado.
 
-A proposta é estudar novos conceitos e aplicá-los diretamente em um projeto prático, observando como uma aplicação simples pode evoluir gradualmente para uma estrutura mais organizada.
+A partir disso, evoluí o projeto para utilizar **SQL como banco de dados**, permitindo que as informações fossem armazenadas de forma persistente e utilizadas novamente sempre que o sistema fosse executado.
 
-Durante o desenvolvimento, novas ideias de melhoria são registradas, estudadas e posteriormente aplicadas ao sistema.
+O Mini WMS é desenvolvido em **Python**, utilizando **SQL/SQLite como banco de dados**. Atualmente, o projeto também está sendo utilizado como um laboratório prático para meus estudos de **Pandas e análise de dados**.
 
-Atualmente, o projeto também está sendo utilizado para **aplicar conhecimentos de análise e manipulação de dados com Python e Pandas**, trabalhando os dados do sistema de estoque de forma prática.
+A ideia é que cada aprendizado seja aplicado diretamente nos dados do próprio sistema, em vez de ficar apenas em exercícios isolados.
 
-A utilização do Pandas permite explorar conceitos como **leitura, tratamento, filtragem, organização e análise de dados**, aproximando o projeto de situações encontradas no desenvolvimento de soluções voltadas para dados.
+## Estrutura do projeto
 
-Além do Python e Pandas, o projeto também faz parte do processo de aprendizado e integração de conhecimentos em **SQL e Power BI**, buscando simular um fluxo mais próximo do encontrado no mercado:
+Cada arquivo possui uma responsabilidade específica dentro do sistema:
 
-**Banco de dados → SQL → Python/Pandas → Power BI**
+1. `produto.py` → operações relacionadas aos produtos
 
-Por isso, este README também será atualizado conforme o projeto evoluir.
+2. `estoque.py` → operações relacionadas ao estoque
 
----
+3. `movimentacao.py` → movimentações de estoque
 
-## 🔄 Projeto em evolução
+4. `banco.py` → conexão e operações com o banco de dados
 
-O desenvolvimento do Mini WMS é contínuo.
+5. `login_oficial.py` → autenticação dos usuários
 
-Novas funcionalidades, melhorias na estrutura do código, banco de dados, autenticação, manipulação e análise de dados, interface e organização do projeto serão adicionadas conforme novos conhecimentos forem adquiridos.
+6. `relatorios.py` → laboratório prático de Pandas e análise dos dados
 
-Atualmente, o projeto está evoluindo para além de um sistema básico de estoque, incorporando ferramentas e conceitos relacionados a **desenvolvimento de software, banco de dados e análise de dados**.
+7. `mini_wms.db` → banco de dados SQLite com os dados utilizados pelo sistema
 
-**O objetivo não é apenas criar um sistema de estoque, mas utilizar o projeto como uma forma prática de aprender, testar, integrar e consolidar conhecimentos em desenvolvimento e dados.**
+8. `README.md` → documentação do projeto
 
----
+## `relatorios.py` — Laboratório de Pandas
+
+O arquivo `relatorios.py` foi criado para funcionar como um **laboratório prático de aprendizado**.
+
+Nele, utilizo os dados do banco de dados do Mini WMS para aprender e aplicar recursos do Python e da biblioteca Pandas.
+
+A ideia é manter registrados no próprio projeto os aprendizados, funções estudadas e exercícios realizados.
+
+O processo de aprendizado segue uma lógica simples:
+
+**Aprender → testar → aplicar → errar → entender o erro → corrigir → aplicar novamente.**
+
+Dessa forma, os erros também fazem parte do processo e ajudam a entender melhor o que está sendo desenvolvido.
+
+Cada novo conhecimento é aplicado diretamente nos dados do Mini WMS, permitindo que a teoria seja transformada em prática.
+
+Até o momento, estou utilizando o arquivo para praticar conceitos como:
+
+* leitura de dados do SQLite com Pandas;
+* inspeção e análise de DataFrames;
+* tipos de dados;
+* identificação de dados duplicados;
+* filtros de dados;
+* utilização do `loc[]`;
+* aplicação de condições simples e compostas;
+* seleção de linhas e colunas;
+* análise dos dados de estoque.
+
+Os exercícios realizados também ficam registrados no `relatorios.py`, servindo como um histórico da minha evolução durante o desenvolvimento do projeto.
+
+## Objetivo do projeto
+
+O Mini WMS não tem como objetivo ser um sistema WMS completo e pronto para produção.
+
+Ele funciona principalmente como um **laboratório de aprendizado**, no qual consigo unir conhecimentos de:
+
+**Python → SQL → Pandas → análise de dados**
+
+e aplicar esses conhecimentos em um projeto relacionado à área de logística que já conheço na prática.
+
+Com isso, o projeto vai evoluindo junto com meus estudos, enquanto mantenho registrados os conceitos que estou aprendendo e colocando em prática.
