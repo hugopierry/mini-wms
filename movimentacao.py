@@ -1,5 +1,9 @@
 from abc import ABC, abstractmethod
+
+from numpy import quantile
 from banco import entrada_item, retirar_item
+import banco
+
 
 class Movimentacao(ABC):
     """
@@ -30,4 +34,6 @@ class Saida(Movimentacao):
         retirar_item(self.produto.sku, self.quantidade)
         return f"Retirada de {self.quantidade} un. de {self.produto.descricao}"
         # retorna mensagem de quantidade retirada do produto com sua descrição.
+
+
 
